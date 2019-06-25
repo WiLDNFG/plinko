@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html>
+
+<head></head>
+<meta charset="UTF-8" />
+<title>Frichinqo</title>
+<script src="lib/phaser.js"></script>
+<script src="states/Boot.js"></script>
+<script src="states/Preloader.js"></script>
+<script src="states/Game.js"></script>
+<script src="states/Player.js"></script>
+
+<script src="ent/Pocket.js"></script>
+<script src="ent/ScoreBin.js"></script>
+<script src="ent/util.js"></script>
+<script src="config.js"></script>
+
+<div id="container">
+
+
+    <div id="game-canvas"></div>    
+
+<div class="image"></div>
+    <div class="balls" id="balls">0</div>
+    <div class="points" id="points">0</div>
+    <div class="gTimer" id="gTimer">0</div>
+
+<button type="button" id="rollGrey"> </button>
+
+
+<button type="button" id="roll" onclick="god.chooseSlot('button1',null)">  </button>
+<button type="button" id="roll1" onclick="god.chooseSlot('button2',null)">  </button>
+<button type="button" id="roll2" onclick="god.chooseSlot('button3',null)">   </button>
+<button type="button" id="roll3" onclick="god.chooseSlot('button4',null)">  </button>
+
+
+<button type="button" id="roll4" onclick="god.chooseSlot('button5',null)">  </button>
+<button type="button" id="roll5" onclick="god.chooseSlot('button6',null)">  </button>
+<button type="button" id="roll6" onclick="god.chooseSlot('button7',null)">   </button>
+<button type="button" id="roll7" onclick="god.chooseSlot('button8',null)">  </button>
+
+
+<button type="button" id="mute" onclick="god.mute(this)" style="border: 0; background: transparent">
+    <img src="assets/mute.png" id="muteImage" width="32" height="32" alt="button" />
+</button>
+
+</div>
+
+<body>
+    <style>
+    ul {
+        margin: 0;
+        padding: 0;
+
+    }
+
+    body {
+
+        margin: 0;
+        width: 0;
+        height: 0;
+  font-family:courier;
+font-size: 17pt;
+
+
+
+background-color: black;
+    }
+
+    #container {
+        position: relative;
+
+
+        margin: 0 auto;
+        padding: 0;
+        min-height: 885px;
+        min-width: 674px;
+ align-content: center;
+    text-align:center;
+    }
+
+
+
+#mute{
+position: absolute;
+left: 48%;
+top: 48%;
+margin : 0 auto;
+padding : 0;
+   outline:none;
+
+}
+
+
+.balls {
+ position:absolute;
+color: white;
+left: 1%;
+top: 94%;
+margin : 0 auto;
+padding : 0;
+text-anchor: middle;
+text-align: center;
+ float: left;
+width:147px;
+height:72px;
+
+font-family: Arial;
+}
+
+.gTimer {
+ position:absolute;
+color: black;
+left: 49.3%;
+top: 92%;
+margin : 0 auto;
+padding : 0;
+text-anchor: middle;
+text-align: center;
+ float: left;
+width:147px;
+height:72px;
+font-family: Arial;
+font-weight: bold;
+font-size: 34px;
+}
+
+#roll {
+ position:absolute;
+
+left: 2px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+  background-color: Transparent;
+    background-repeat:no-repeat;
+ 
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+}
+
+#roll1 {
+ position:absolute;
+
+left: 84px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+}
+#roll2 {
+ position:absolute;
+
+left: 166px;
+top:701px;
+width: 82px;
+height: 87px;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+}
+#roll3 {
+ position:absolute;
+
+left: 248px;
+top: 701px;
+width: 82px;
+height: 87px;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+}
+
+#roll7 {
+ position:absolute;
+
+left: 576px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+z-index: 2;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+
+}
+#roll6 {
+ position:absolute;
+
+left: 494px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+z-index: 2;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+
+}
+#roll5 {
+ position:absolute;
+
+left: 412px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+z-index: 2;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+
+}
+#roll4 {
+ position:absolute;
+
+left: 330px;
+top: 701px;
+width: 82px;
+height: 87px;
+
+z-index: 2;
+  background-color: Transparent;
+    background-repeat:no-repeat;
+
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    border: none;
+
+}
+
+
+
+
+
+.points {
+ position:absolute;
+color: white;
+left: 78.7%;
+top: 94%;
+margin : 0 auto;
+padding : 0;
+text-anchor: middle;
+text-align: center;
+ float: left;
+width:147px;
+height:72px;
+
+font-family: Arial;
+}
+
+ 
+.points.monospaced {
+font-family: Arial;
+}
+
+.jackpot {
+ position:absolute;
+color: black;
+left: 59%;
+top: 81.5%;
+margin : 0 auto;
+padding : 0;
+text-anchor: middle;
+text-align: center;
+font-weight: bold;
+width:256px;
+height:83px;
+font-size:20pt;
+}
+
+
+
+
+    #game-canvas {
+        position: absolute;
+        top: 2px;
+        left: 49px;
+
+
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    div.image {
+        position: absolute;
+        content: url(assets/frame.png);
+        z-index: -10;
+
+        margin: 0 auto;
+        padding: 0;
+    }
+    </style>
+    <script type="text/javascript">
+
+window.addEventListener("error", handleError, true);
+
+function handleError(evt) {
+    if (evt.message) { // Chrome sometimes provides this
+      alert("error: "+evt.message +" at linenumber: "+evt.lineno+" of file: "+evt.filename);
+    } else {
+      alert("error: "+evt.type+" from element: "+(evt.srcElement || evt.target));
+    }
+}
+    window.onload = function() {
+
+         var game = new Phaser.Game(578, 667, Phaser.CANVAS, 'game-canvas', null);
+
+        game.state.add('Boot', BasicGame.Boot);
+    game.state.add('PlayState', BasicGame.PlayState);
+        game.state.add('Preloader', BasicGame.Preloader);
+
+
+
+        game.state.start('Boot');
+
+
+
+    };
+    </script>
+</body>
+
+</html>
